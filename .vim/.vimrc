@@ -105,7 +105,6 @@ autocmd FileType css setlocal shiftwidth=2 tabstop=2
 autocmd FileType javascript setlocal smartindent ts=2 sw=2
 autocmd FileType html setlocal sw=2 ts=2
 autocmd FileType jinja setlocal sw=2 ts=2
-autocmd FileType yaml setlocal sw=2 ts=2
 autocmd FileType java setlocal shiftwidth=4 tabstop=4 
 
 inoremap {<CR> {<CR>}<Esc>ko
@@ -185,6 +184,7 @@ let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
 let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib'
+
 "Key Map"
 map<F5> :w<cr>:!python %<cr>
 nmap <F8> :TagbarToggle<cr>
@@ -193,6 +193,8 @@ nmap <F10> :SCCompileRun<cr>
 nnoremap <F3> :set invpaste paste?<CR>
 imap <F3> <C-O>:set invpaste paste?<CR>
 set pastetoggle=<F3>
+" Stoping searching
+nmap <F2> :nohlsearch<CR>
 "Taglist"
 let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
@@ -201,8 +203,7 @@ let Tlist_Use_Right_Window=1
 "Disable EX mode"
 map Q <Nop>
 map f <Nop>
-" Stoping searching
-nmap <F2> :nohlsearch<CR>
+
 " Clang complete options
 let g:clang_complete_copen=1
 let g:clang_periodic_quickfix=1
@@ -222,9 +223,8 @@ map <C-e> :NERDTreeToggle<CR>
 map <leader>c <c-_><c-_>
 
 
-" For C++ and lua indentation
+" For C++ indentation
 autocmd FileType cpp setlocal shiftwidth=2 tabstop=2
-autocmd FileType lua setlocal shiftwidth=3 tabstop=3
 
 " For pymode driving
 " Disable all rope completions, since it is much worse than Omni-completion.
