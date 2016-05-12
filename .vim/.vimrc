@@ -3,8 +3,7 @@
 """
 set nocompatible               " be iMproved
 filetype off                   " required!
-
-
+set viminfo+=n~/.nvim/tmpfiles/viminfo
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
@@ -24,9 +23,7 @@ Bundle 'garbas/vim-snipmate'
 Bundle 'editorconfig/editorconfig-vim'
 
 Bundle 'ervandew/supertab'
-"Bundle 'spolu/dwm.vim'
 Bundle 'xuhdev/SingleCompile'
-" Bundle 'davidhalter/jedi-vim'
 Bundle 'Rip-Rip/clang_complete'
 
 Bundle 'airblade/vim-gitgutter'
@@ -40,12 +37,12 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'vim-scripts/a.vim'
 Bundle "lepture/vim-jinja"
 Bundle 'pangloss/vim-javascript'
-Bundle 'vim-scripts/Auto-Pairs'
+" Bundle 'vim-scripts/Auto-Pairs'
 Bundle 'majutsushi/tagbar'
 Bundle 'fatih/vim-go'
-" For octave and Matlab highlighting
 Bundle 'nvie/vim-flake8'
-Bundle 'jvirtanen/vim-octave'
+Bundle 'luochen1990/rainbow'
+
 
 " NERDTree
 Bundle 'scrooloose/nerdtree'
@@ -55,11 +52,6 @@ Bundle 'tomtom/tcomment_vim'
 "syntastic
 " Bundle 'scrooloose/syntastic'
 " Bundle 'Valloric/YouCompleteMe'
-
-"Bundle 'tomtom/checksyntax_vim'
-
-" Python-mode
-" Bundle 'klen/python-mode'
 
 filetype plugin indent on     " required!
 
@@ -116,27 +108,24 @@ autocmd FileType jinja setlocal sw=2 ts=2
 autocmd FileType yaml setlocal sw=2 ts=2
 autocmd FileType java setlocal shiftwidth=4 tabstop=4 
 
+inoremap {<CR> {<CR>}<Esc>ko
 
 """
 " colorscheme
-"""
-" Molokai
 colorscheme molokai 
-" set background=dark
+set background=dark
 let g:molokai_original = 1
 set t_Co=256
 let g:Powerline_symbols = 'fancy'
-" Solarized"
-"set background=dark
-"colorscheme solarized
-"let g:solarized_termcolors=256
+
+let g:rainbow_active = 1
 
 " configure syntastic syntax checking to check on open as well as save
 let g:syntastic_check_on_open=1
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_wq = 0
+" let g:syntastic_check_on_wq = 0
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -185,7 +174,13 @@ set guitablabel=%{TabpageName(1)}/%{TabpageName(2)}%{TabpageState()} "1:Full Pat
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest,preview
 
-let g:syntastic_python_checkers = ['flake8', 'pyflakes']
+"tmux color setting
+if exists('$TMUX')
+  set term=screen-256color
+endif
+
+
+let g:syntastic_python_checkers = ['pyflakes']
 let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
@@ -245,5 +240,5 @@ set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
